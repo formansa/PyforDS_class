@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign-up Page</title>
+    <link href="/static/css/style.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+       $(document).ready(function(){
+      
+         $("button").click(function(){
+    // get user input "time" 
+              var userTime = $('#time').val()
+              $('#time').val(userTime)
+    // get user's checked boxes
+              var lineChoice = $('#lines:checked').map(function(){return $(this).val()})
+              var lineString = lineChoice.get().join(', ')
+              $.ajax({
+                  type: "addProfile",
+                  url: "/userInput",
+                  data: {"email" : $('#email').val(), 'time':userTime, 'lines':linesChoice}               
+              }).done(function(){
+   // pop up alert 
+              alert("You will be taking line: " + lineString + " at " + $("#time").val())
+            });
+         });
+            
+       });       
+    </script>        
+</head>
+<body>
+  <fieldset>
+    <legend>MTA Notification</legend>
+        <form method="get" action="?????" target="_self"> 
+		      <h1>Sign up</h1><br/>  
+		  <p>
+            Enter your email address here: <br>
+		    <input type="email" placeholder="Email address" id="email" required></p>
+		  <p>
+		    When do you take MTA? Enter time in 24hr format: <br>
+              <input type="text" placeholder="HH:MM" pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]" id="time" required></p>
+		  <p>
+             <fieldset>
+               <legend>Please select all the possible lines you take: </legend>
+                 <input type="checkbox" id="lines" value="123"/><lable for="123">1,2,3</lable><br />
+                 <input type="checkbox" id="lines" value="456"/><label for="456">4,5,6</label><br />
+                 <input type="checkbox" id="lines" value="7"/><label for="7">7</label><br />
+                 <input type="checkbox" id="lines" value="ACE"/><label for="ACE">A,C,E</label><br />
+                 <input type="checkbox" id="lines" value="BDFM"/><label for="BDFM">B,D,F,M</label><br />
+                 <input type="checkbox" id="lines" value="G"/><label for="G">G</label><br />            
+                 <input type="checkbox" id="lines" value="JZ"/><label for="JZ">J,Z</label><br />  
+                 <input type="checkbox" id="lines" value="L"/><label for="L">L</label><br />
+                 <input type="checkbox" id="lines" value="NQR"/><label for="NQR">N,Q,R</label><br />
+                 <input type="checkbox" id="lines" value="S"/><label for="S">S</label><br />
+                 <input type="checkbox" id="lines" value="SIR"/><label for="SIR">S,I,R</label><br />               
+             </fieldset>  
+		  <p>
+		   <button>submit your info</button></p>
+       </form>
+  </fieldset>
+</1body>
+</html>
